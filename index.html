@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #eef1f4;
+  --surface: #ffffff;
+  --ink: #1b2430;
+  --muted: #5d6877;
+  --line: #d3d9e0;
+  --accent: #2f4bdb;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3e8ff;
+  --radius: 6px;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.55 var(--sans); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Header */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-header-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  max-width: 1160px; margin: 0 auto; padding: 18px 24px;
+}
+.brand { font: 600 20px var(--serif); text-decoration: none; }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.nav a[aria-current="page"] { box-shadow: 0 2px 0 var(--accent); }
+
+/* Shared */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 28px 0; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+h1, h2, h3 { font-family: var(--serif); margin: 0; }
+h2 { font-weight: 600; font-size: 30px; line-height: 1.2; letter-spacing: -0.005em; }
+.lede { color: var(--muted); max-width: 56ch; margin: 0; }
+.btn {
+  display: inline-block; text-align: center; text-decoration: none; white-space: nowrap;
+  font: 600 16px var(--sans); border-radius: var(--radius); padding: 12px 22px;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer;
+}
+.btn:hover { filter: brightness(0.92); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: #fff; filter: none; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Image placeholder: replace with an <img> */
+.img {
+  width: 100%; border-radius: var(--radius); border: 1px solid var(--line);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 14px, rgba(47,75,219,.07) 14px 15px),
+    var(--accent-soft);
+  display: grid; place-items: center; color: var(--muted); font-size: 14px; font-weight: 500;
+}
+.img.wide { aspect-ratio: 4 / 3; }
+.img.tall { aspect-ratio: 1 / 1; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 56px; align-items: center; padding: 72px 0 40px; }
+.hero h1 { font-weight: 600; font-size: 60px; line-height: 1.05; letter-spacing: -0.015em; margin-bottom: 20px; max-width: 14ch; }
+.hero .lede { margin-bottom: 32px; font-size: 18px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 32px 40px; gap: 24px; }
+.stat strong { display: block; font: 600 40px/1.1 var(--serif); }
+.stat span { color: var(--muted); }
+
+/* Ad slot (A-ADS) */
+.ad { text-align: center; }
+.ad-label { display: block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.ad-slot { width: 100%; min-height: 90px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.ad-slot iframe { max-width: 100%; border: 0; }
+.ad-placeholder {
+  width: 100%; max-width: 728px; min-height: 90px; display: grid; place-items: center;
+  border: 2px dashed #aeb7c2; border-radius: var(--radius); background: var(--surface);
+  color: var(--muted); font-size: 14px; font-weight: 500;
+}
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: center; padding: 40px; }
+.about h2 { margin-bottom: 16px; }
+.about p { margin: 0 0 12px; color: var(--muted); max-width: 52ch; }
+.about .btn { margin-top: 16px; }
+
+/* Values */
+.head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.card { padding: 28px; }
+.card .mark { width: 40px; height: 40px; border-radius: var(--radius); background: var(--accent-soft); margin-bottom: 20px; }
+.card h3 { font-size: 21px; font-weight: 600; margin-bottom: 8px; }
+.card p { margin: 0; color: var(--muted); }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px; }
+.gallery .img { aspect-ratio: auto; min-height: 220px; height: 100%; }
+.gallery .big { grid-row: span 2; min-height: 460px; }
+
+/* Roles */
+.roles { padding: 12px 40px; }
+.role { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 20px 0; text-decoration: none; }
+.role + .role { border-top: 1px solid var(--line); }
+.role h3 { font-size: 20px; font-weight: 600; }
+.role p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+.role .go { font-weight: 600; color: var(--accent); white-space: nowrap; }
+.role:hover h3 { text-decoration: underline; }
+
+/* CTA */
+.cta {
+  background: var(--accent); color: var(--accent-ink); border-radius: var(--radius);
+  padding: 56px 48px; display: flex; justify-content: space-between; align-items: center; gap: 32px;
+}
+.cta p { margin: 8px 0 0; opacity: .85; }
+.cta .btn { background: #fff; color: var(--accent); border-color: #fff; }
+
+/* Footer */
+.site-footer { background: var(--ink); color: #c4cdd9; margin-top: 56px; }
+.site-footer-inner {
+  max-width: 1160px; margin: 0 auto; padding: 56px 24px 32px;
+  display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 40px;
+}
+.site-footer .brand { color: #fff; display: inline-block; margin-bottom: 12px; }
+.site-footer p { margin: 0; font-size: 15px; max-width: 34ch; }
+.site-footer h3 { font: 600 15px var(--sans); color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.site-footer li a { color: #c4cdd9; text-decoration: none; font-size: 15px; }
+.site-footer li a:hover { color: #fff; text-decoration: underline; }
+.site-footer :focus-visible { outline-color: #fff; }
+.footer-base {
+  grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px;
+  padding-top: 24px; border-top: 1px solid #3a4658; font-size: 14px;
+}
+.footer-base a { color: #c4cdd9; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .hero, .about { grid-template-columns: 1fr; gap: 32px; }
+  .hero { padding-top: 40px; }
+  .hero h1 { font-size: 46px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .gallery .big { grid-column: 1 / -1; grid-row: auto; min-height: 280px; }
+  .site-footer-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-footer-inner > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .nav a:not(.keep) { display: none; }
+  .hero h1 { font-size: 38px; }
+  .stats, .about, .roles { padding-left: 20px; padding-right: 20px; }
+  .about { padding-top: 24px; padding-bottom: 24px; }
+  .cta { flex-direction: column; align-items: flex-start; padding: 36px 24px; }
+  .role .go { display: none; }
+  .head { flex-direction: column; align-items: flex-start; }
+  .site-footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 40px; }
+  .footer-base { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html">Your Company</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a class="keep" href="index.html#roles">Open roles</a>
+      <a href="index.html#about">About</a>
+      <a class="keep" href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div>
+      <h1>Headline for your company</h1>
+      <p class="lede">A short supporting line that explains what the company does and who it is for.</p>
+      <div class="actions">
+        <a class="btn" href="index.html#roles">View open roles</a>
+        <a class="btn ghost" href="#about">About us</a>
+      </div>
+    </div>
+    <div class="img wide" role="img" aria-label="Hero image placeholder">Hero image</div>
+  </section>
+
+  <section class="section">
+    <div class="box stats">
+      <div class="stat"><strong>00</strong><span>Stat label</span></div>
+      <div class="stat"><strong>00</strong><span>Stat label</span></div>
+      <div class="stat"><strong>00</strong><span>Stat label</span></div>
+      <div class="stat"><strong>00</strong><span>Stat label</span></div>
+    </div>
+  </section>
+
+  <section class="section ad" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot">
+      <!-- BEGIN AADS AD UNIT 2461023 -->
+      <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+        <iframe data-aa='2461023' src='//acceptable.a-ads.com/2461023/?size=Adaptive'
+                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+      <!-- END AADS AD UNIT 2461023 -->
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="box about">
+      <div class="img tall" role="img" aria-label="Image placeholder">Image</div>
+      <div>
+        <h2>About the company</h2>
+        <p>Add a paragraph about who you are and what you do.</p>
+        <p>Add a second paragraph about your story or mission.</p>
+        <a class="btn ghost" href="index.html#about">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="head">
+      <h2>What we value</h2>
+      <p class="lede">A one-line intro to your values.</p>
+    </div>
+    <div class="cards">
+      <article class="box card"><div class="mark"></div><h3>Value one</h3><p>Short description of this value.</p></article>
+      <article class="box card"><div class="mark"></div><h3>Value two</h3><p>Short description of this value.</p></article>
+      <article class="box card"><div class="mark"></div><h3>Value three</h3><p>Short description of this value.</p></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="gallery">
+      <div class="img big" role="img" aria-label="Image placeholder">Image</div>
+      <div class="img" role="img" aria-label="Image placeholder">Image</div>
+      <div class="img" role="img" aria-label="Image placeholder">Image</div>
+      <div class="img" role="img" aria-label="Image placeholder">Image</div>
+      <div class="img" role="img" aria-label="Image placeholder">Image</div>
+    </div>
+  </section>
+
+  <section class="section" id="roles">
+    <div class="head">
+      <h2>Open roles</h2>
+      <a class="btn ghost" href="index.html#roles">See all roles</a>
+    </div>
+    <div class="box roles">
+      <a class="role" href="job.html"><div><h3>Job title</h3><p>Department &middot; Location &middot; Employment type</p></div><span class="go">View role &rarr;</span></a>
+      <a class="role" href="job.html"><div><h3>Job title</h3><p>Department &middot; Location &middot; Employment type</p></div><span class="go">View role &rarr;</span></a>
+      <a class="role" href="job.html"><div><h3>Job title</h3><p>Department &middot; Location &middot; Employment type</p></div><span class="go">View role &rarr;</span></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta">
+      <div>
+        <h2>Call to action headline</h2>
+        <p>A short line encouraging people to get in touch or apply.</p>
+      </div>
+      <a class="btn" href="/contact">Get in touch</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <a class="brand" href="index.html">Your Company</a>
+      <p>A short line about your company goes here.</p>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul><li><a href="index.html#about">About</a></li><li><a href="index.html#roles">Careers</a></li><li><a href="/contact">Contact</a></li></ul>
+    </div>
+    <div>
+      <h3>Resources</h3>
+      <ul><li><a href="#">Link one</a></li><li><a href="#">Link two</a></li><li><a href="#">Link three</a></li></ul>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms of use</a></li></ul>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Your Company. All rights reserved.</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
