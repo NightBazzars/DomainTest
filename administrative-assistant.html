@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administrative Assistant | Parallax</title>
+<meta name="description" content="Administrative Assistant at Parallax. Remote, full-time, based in Calgary, Alberta.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #eef1f4;
+  --surface: #ffffff;
+  --ink: #1b2430;
+  --muted: #5d6877;
+  --line: #d3d9e0;
+  --accent: #2f4bdb;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3e8ff;
+  --radius: 6px;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.55 var(--sans); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Top bar */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-header-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  max-width: 1160px; margin: 0 auto; padding: 18px 24px;
+}
+.brand { font: 600 20px var(--serif); text-decoration: none; }
+.brand img { display: block; height: 24px; width: auto; }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.nav a[aria-current="page"] { box-shadow: 0 2px 0 var(--accent); }
+
+.site-footer { background: var(--ink); color: #c4cdd9; margin-top: 24px; }
+.site-footer-inner {
+  max-width: 1160px; margin: 0 auto; padding: 56px 24px 32px;
+  display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 40px;
+}
+.site-footer .brand { color: #fff; display: inline-block; margin-bottom: 12px; }
+.site-footer p { margin: 0; font-size: 15px; max-width: 34ch; }
+.site-footer h3 { font: 600 15px var(--sans); color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.site-footer li a { color: #c4cdd9; text-decoration: none; font-size: 15px; }
+.site-footer li a:hover { color: #fff; text-decoration: underline; }
+.site-footer :focus-visible { outline-color: #fff; }
+.footer-base {
+  grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px;
+  padding-top: 24px; border-top: 1px solid #3a4658; font-size: 14px;
+}
+.footer-base a { color: #c4cdd9; }
+@media (max-width: 960px) {
+  .site-footer-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-footer-inner > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .brand img { height: 20px; }
+  .nav a:not(.keep) { display: none; }
+  .site-footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 40px; }
+  .footer-base { flex-direction: column; }
+}
+
+/* Job header */
+.hero { max-width: 1160px; margin: 0 auto; padding: 80px 24px 92px; }
+.back-link { display: inline-block; margin-bottom: 20px; font-size: 14px; color: var(--muted); }
+.back-link:hover { color: var(--ink); }
+.hero h1 {
+  font: 600 56px/1.05 var(--serif); letter-spacing: -0.015em;
+  margin: 0 0 20px; max-width: 18ch;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.tags li {
+  padding: 7px 14px; border: 1px solid #aeb7c2; border-radius: 999px;
+  background: var(--surface); font-size: 14px; font-weight: 500;
+}
+
+/* Page grid */
+.page {
+  max-width: 1160px; margin: 0 auto; padding: 8px 24px 96px;
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px;
+}
+
+/* Content panels */
+.content {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 40px 48px 16px;
+}
+.panel { padding: 0 0 26px; }
+.panel h2 { font: 600 23px/1.2 var(--serif); letter-spacing: -0.005em; margin: 0 0 10px; }
+.panel .body { font-size: 16px; line-height: 1.4; padding-left: 24px; }
+.panel .body > :first-child { margin-top: 0; }
+.panel .body > :last-child { margin-bottom: 0; }
+.panel p { margin: 0 0 6px; max-width: 68ch; }
+.panel ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; max-width: 68ch; }
+.panel p + ul, .panel ul + p { margin-top: 10px; }
+.panel li::marker { color: var(--accent); }
+.placeholder { color: var(--muted); }
+
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.perk { border-left: 3px solid var(--accent-soft); padding-left: 14px; }
+.perk strong { display: block; font-weight: 600; }
+.perk span { color: var(--muted); font-size: 15px; }
+
+/* Horizontal summary box */
+.summary {
+  padding: 0 0 28px; margin-bottom: 28px; border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px;
+  align-items: center;
+}
+.summary dl { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; max-width: 480px; }
+.summary dt { font-size: 16px; color: var(--muted); }
+.summary dd { margin: 2px 0 0; font-size: 16px; font-weight: 500; }
+.actions { display: flex; gap: 12px; }
+
+.btn {
+  display: block; text-align: center; text-decoration: none; white-space: nowrap;
+  font: 600 16px var(--sans); border-radius: var(--radius); padding: 12px 22px;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(0.92); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: #fff; filter: none; }
+
+/* Mobile apply bar */
+.mobile-bar { display: none; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .summary { grid-template-columns: 1fr; }
+  .summary .actions { display: none; }
+  .summary dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 44px; }
+  .mobile-bar {
+    display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+    padding: 12px 24px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--surface); border-top: 1px solid var(--line);
+  }
+  body { padding-bottom: 80px; }
+}
+@media (max-width: 720px) {
+  .hero { padding: 52px 24px 60px; }
+  .hero h1 { font-size: 36px; }
+  .content { padding: 28px 20px 8px; }
+  .panel h2 { font-size: 21px; }
+  .panel .body { padding-left: 16px; }
+  .cols { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Ads (A-ADS) */
+.ad { text-align: center; }
+.ad-label { display: block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.ad-slot { width: 100%; min-height: 90px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.ad-slot iframe { max-width: 100%; border: 0; }
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt="Parallax" width="922" height="124"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="maintenance.html">Case studies</a>
+      <a href="maintenance.html">About</a>
+      <a class="keep" href="careers.html">Careers</a>
+      <a class="keep" href="maintenance.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<header class="hero">
+  <a class="back-link" href="careers.html">&larr; All open roles</a>
+  <h1>Administrative Assistant</h1>
+  <ul class="tags" aria-label="Job details">
+    <li>Parallax</li>
+    <li>Calgary, Alberta</li>
+    <li>Remote</li>
+    <li>Full-time</li>
+  </ul>
+</header>
+
+<div class="page">
+
+  <section class="ad" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot">
+      <!-- BEGIN AADS AD UNIT 2461435 -->
+      <div id="frame-1" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+        <iframe data-aa='2461435' src='//acceptable.a-ads.com/2461435/?size=Adaptive'
+                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+      <!-- END AADS AD UNIT 2461435 -->
+    </div>
+  </section>
+
+
+  <main class="content">
+    <aside class="summary" aria-label="Role summary">
+      <dl>
+        <div><dt>Location</dt><dd>Calgary, Alberta (Remote)</dd></div>
+        <div><dt>Employment type</dt><dd>Full-time</dd></div>
+        <div><dt>Salary</dt><dd>$20 to $30 per hour</dd></div>
+        <div><dt>Reports to</dt><dd>Project Manager</dd></div>
+      </dl>
+      <div class="actions">
+        <a class="btn" href="apply.html">Apply for this role</a>
+        <!-- Share button disabled for now. To restore it, remove this comment and the one around the script at the bottom.
+        <a class="btn ghost" id="share" href="#overview">Share this role</a>
+        -->
+      </div>
+    </aside>
+
+    <section class="panel" id="overview">
+      <h2>About us</h2>
+      <div class="body">
+        <p>Parallax is a growing digital marketing firm serving small to medium-sized businesses. Since 2025, we&rsquo;ve helped clients grow their brands and reach new customers using AI-powered strategy, content, and campaign tools. Our team of 8 people values reliability, respect, and open communication.</p>
+        <p>We believe a well-run team is the foundation of great work, and we&rsquo;re looking for an organized, personable administrative assistant to help us keep it that way.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="role">
+      <h2>About the role</h2>
+      <div class="body">
+        <p>As our Administrative Assistant, you&rsquo;ll be the heart of our daily operations. You&rsquo;ll be the first point of contact for clients and callers, and a trusted resource for colleagues who need things to run smoothly. This is a varied, hands-on role where no two days are exactly alike.</p>
+        <p>You&rsquo;ll work closely with our Founder, Project Manager, and marketing team, and you&rsquo;ll have real opportunities to improve how we work, including finding smart ways to use AI tools to save everyone time. You&rsquo;ll start with core administrative duties, and as you grow, you&rsquo;ll have the chance to take on larger projects and more responsibility.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="responsibilities">
+      <h2>What you&rsquo;ll do</h2>
+      <div class="body">
+        <p>Your day will start with our virtual front desk. From there, you&rsquo;ll keep the team organized and the business running smoothly:</p>
+        <ul>
+          <li><strong>Virtual front desk:</strong> welcome clients to meetings, answer and direct calls and emails, and manage shared inboxes.</li>
+          <li><strong>Team organization:</strong> manage calendars, schedule meetings, book travel, and take minutes when needed.</li>
+          <li><strong>Documents and records:</strong> prepare, proofread, and format documents, keep our digital files in order, and protect the confidentiality of client and company records.</li>
+          <li><strong>Vendors and finance:</strong> coordinate with vendors and software providers, process invoices and expense reports, and handle accurate data entry and basic bookkeeping tasks.</li>
+          <li><strong>People and culture:</strong> help onboard new employees, plan team events, and back up colleagues during busy periods.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="where">
+      <h2>Where you&rsquo;ll work</h2>
+      <div class="body">
+        <p>You&rsquo;ll work remotely. Standard hours are Monday to Friday, 9 a.m. to 5 p.m. EST, with some flexibility.</p>
+        <p>Occasional overtime may be needed during busy periods, and it is paid in line with Alberta employment standards.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="requirements">
+      <h2>What you bring</h2>
+      <div class="body">
+        <ul>
+          <li>Strong written and verbal communication skills in English</li>
+          <li>Experience with Microsoft Office and Google Workspace</li>
+          <li>Organization, attention to detail, and time management</li>
+          <li>Ability to prioritize competing tasks and stay calm under pressure</li>
+          <li>A professional, friendly manner with clients and colleagues alike</li>
+          <li>Discretion when handling confidential information</li>
+          <li>A proactive attitude, and comfort asking questions and suggesting improvements</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="nice-to-have">
+      <h2>Nice to have</h2>
+      <div class="body">
+        <ul>
+          <li>Experience with AI tools (such as ChatGPT or Claude) or a strong interest in learning them</li>
+          <li>Bilingual in French and English</li>
+          <li>Experience in marketing or administration for small businesses</li>
+          <li>Familiarity with basic bookkeeping or invoicing</li>
+          <li>Event planning experience</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="benefits">
+      <h2>What we offer</h2>
+      <div class="body">
+        <ul>
+          <li><strong>Salary:</strong> $20 to $30 per hour, depending on experience</li>
+          <li><strong>Time off:</strong> 2 weeks of vacation, 15 personal or sick days, all statutory holidays, and an office closure between Christmas and New Year&rsquo;s</li>
+          <li><strong>Health:</strong> Group health, dental, and vision insurance starting after 3 months, with 50% of premiums paid by the company</li>
+          <li><strong>Retirement:</strong> Pension with 50% employer matching</li>
+          <li><strong>Growth:</strong> An annual training budget of $3,000 and clear opportunities to advance</li>
+          <li><strong>Culture:</strong> A friendly, supportive team that values work-life balance</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <section class="ad" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot">
+      <!-- BEGIN AADS AD UNIT 2461434 -->
+      <div id="frame-2" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+        <iframe data-aa='2461434' src='//acceptable.a-ads.com/2461434/?size=Adaptive'
+                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+      <!-- END AADS AD UNIT 2461434 -->
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <a class="brand" href="index.html"><img src="images/logo-white.png" alt="Parallax" width="922" height="124"></a>
+      <p>Performance-driven digital marketing for growing businesses.</p>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul><li><a href="maintenance.html">About</a></li><li><a href="careers.html">Careers</a></li><li><a href="maintenance.html">Contact</a></li></ul>
+    </div>
+    <div>
+      <h3>Resources</h3>
+      <ul><li><a href="index.html#services">Services</a></li><li><a href="maintenance.html">Case studies</a></li><li><a href="index.html#faq">FAQ</a></li></ul>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <ul><li><a href="maintenance.html">Privacy policy</a></li><li><a href="maintenance.html">Terms of use</a></li></ul>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Parallax. All rights reserved.</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn" href="apply.html">Apply for this role</a>
+</div>
+
+<!-- Share button script (disabled with the button above)
+<script>
+  // Share button: native share sheet where available, otherwise copy the page link.
+  document.getElementById('share').addEventListener('click', function (e) {
+    var link = this, url = location.href;
+    if (navigator.share) {
+      e.preventDefault();
+      navigator.share({ title: document.title, url: url }).catch(function () {});
+    } else if (navigator.clipboard) {
+      e.preventDefault();
+      navigator.clipboard.writeText(url).then(function () {
+        link.textContent = 'Link copied';
+        setTimeout(function () { link.textContent = 'Share this role'; }, 2000);
+      });
+    }
+  });
+</script>
+-->
+
+</body>
+</html>

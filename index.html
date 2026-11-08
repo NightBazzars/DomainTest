@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parallax</title>
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #dfe4ea;
+  --surface: #ffffff;
+  --ink: #1b2430;
+  --muted: #5d6877;
+  --line: #c2cad4;
+  --accent: #2f4bdb;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3e8ff;
+  --radius: 6px;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.55 var(--sans); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Header */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-header-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  max-width: 1160px; margin: 0 auto; padding: 18px 24px;
+}
+.brand { font: 600 20px var(--serif); text-decoration: none; }
+.brand img { display: block; height: 24px; width: auto; }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.nav a[aria-current="page"] { box-shadow: 0 2px 0 var(--accent); }
+
+/* Shared */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 28px 0; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+h1, h2, h3 { font-family: var(--serif); margin: 0; }
+h2 { font-weight: 600; font-size: 30px; line-height: 1.2; letter-spacing: -0.005em; }
+.lede { color: var(--muted); max-width: 56ch; margin: 0; }
+.btn {
+  display: inline-block; text-align: center; text-decoration: none; white-space: nowrap;
+  font: 600 16px var(--sans); border-radius: var(--radius); padding: 12px 22px;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer;
+}
+.btn:hover { filter: brightness(0.92); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: #fff; filter: none; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Image placeholder: replace with an <img> */
+.img {
+  width: 100%; border-radius: var(--radius); border: 1px solid var(--line);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 14px, rgba(47,75,219,.07) 14px 15px),
+    var(--accent-soft);
+  display: grid; place-items: center; color: var(--muted); font-size: 14px; font-weight: 500;
+}
+.img.wide { aspect-ratio: 4 / 3; }
+.img.tall { aspect-ratio: 1 / 1; }
+
+.pic { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); }
+.case .pic { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; aspect-ratio: 16 / 10; object-fit: cover; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 56px; align-items: center; padding: 72px 0 40px; }
+.hero h1 { font-weight: 600; font-size: 60px; line-height: 1.05; letter-spacing: -0.015em; margin-bottom: 20px; max-width: 14ch; }
+.hero .lede { margin-bottom: 32px; font-size: 18px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 32px 40px; gap: 24px; }
+.stat strong { display: block; font: 600 40px/1.1 var(--serif); }
+.stat span { color: var(--muted); }
+
+/* Ad slot (A-ADS) */
+.ad { text-align: center; }
+.ad-label { display: block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.ad-slot { width: 100%; min-height: 90px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.ad-slot iframe { max-width: 100%; border: 0; }
+.ad-placeholder {
+  width: 100%; max-width: 728px; min-height: 90px; display: grid; place-items: center;
+  border: 2px dashed #aeb7c2; border-radius: var(--radius); background: var(--surface);
+  color: var(--muted); font-size: 14px; font-weight: 500;
+}
+
+/* About */
+.about { display: block; padding: 40px; }
+.about h2 { margin-bottom: 16px; }
+.about p { margin: 0 0 12px; color: var(--muted); max-width: 52ch; }
+.about .btn { margin-top: 16px; }
+
+/* Values */
+.head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
+
+
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.service { padding: 24px; display: flex; flex-direction: column; }
+.service .icon { display: block; width: 52px; height: 52px; object-fit: contain; margin-bottom: 16px; }
+.service h3 { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+.service p { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+.more { margin-top: auto; font-weight: 600; color: var(--accent); text-decoration: none; }
+.more:hover { text-decoration: underline; }
+
+/* Case studies */
+.work { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.case { overflow: hidden; display: flex; flex-direction: column; }
+.case .img { aspect-ratio: 16 / 10; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+.case .body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.tag { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+.case h3 { font-size: 22px; font-weight: 600; line-height: 1.25; }
+.case .more { padding-top: 8px; }
+
+/* FAQ */
+.faq { padding: 8px 40px; }
+.faq details + details { border-top: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 20px 0; font: 600 18px var(--serif); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 400 26px/1 var(--sans); color: var(--accent); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { margin: 0 0 20px; color: var(--muted); max-width: 70ch; }
+
+/* CTA */
+.cta {
+  background: var(--accent); color: var(--accent-ink); border-radius: var(--radius);
+  padding: 56px 48px; display: flex; justify-content: space-between; align-items: center; gap: 32px;
+}
+.cta p { margin: 8px 0 0; opacity: .85; }
+.cta .btn { background: #fff; color: var(--accent); border-color: #fff; }
+
+/* Footer */
+.site-footer { background: var(--ink); color: #c4cdd9; margin-top: 56px; }
+.site-footer-inner {
+  max-width: 1160px; margin: 0 auto; padding: 56px 24px 32px;
+  display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 40px;
+}
+.site-footer .brand { color: #fff; display: inline-block; margin-bottom: 12px; }
+.site-footer p { margin: 0; font-size: 15px; max-width: 34ch; }
+.site-footer h3 { font: 600 15px var(--sans); color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.site-footer li a { color: #c4cdd9; text-decoration: none; font-size: 15px; }
+.site-footer li a:hover { color: #fff; text-decoration: underline; }
+.site-footer :focus-visible { outline-color: #fff; }
+.footer-base {
+  grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px;
+  padding-top: 24px; border-top: 1px solid #3a4658; font-size: 14px;
+}
+.footer-base a { color: #c4cdd9; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .hero, .about { grid-template-columns: 1fr; gap: 32px; }
+  .hero { padding-top: 40px; }
+  .hero h1 { font-size: 46px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work { grid-template-columns: 1fr; }
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-footer-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-footer-inner > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .brand img { height: 20px; }
+  .nav a:not(.keep) { display: none; }
+  .hero h1 { font-size: 38px; }
+  .stats, .about { padding-left: 20px; padding-right: 20px; }
+  .about { padding-top: 24px; padding-bottom: 24px; }
+  .services { grid-template-columns: 1fr; }
+  .faq { padding: 4px 20px; }
+  .cta { flex-direction: column; align-items: flex-start; padding: 36px 24px; }
+  .head { flex-direction: column; align-items: flex-start; }
+  .site-footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 40px; }
+  .footer-base { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt="Parallax" width="922" height="124"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="maintenance.html">Case studies</a>
+      <a href="maintenance.html">About</a>
+      <a class="keep" href="careers.html">Careers</a>
+      <a class="keep" href="maintenance.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div>
+      <h1>Marketing that grows your business</h1>
+      <p class="lede">We help ambitious brands win more customers through search, social and paid media, backed by clear reporting and honest advice.</p>
+      <div class="actions">
+        <a class="btn" href="maintenance.html">Get a proposal</a>
+        <a class="btn ghost" href="#work">See our work</a>
+      </div>
+    </div>
+    <img class="pic wide" src="images/hero.jpg" alt="Marketing infographic showing a performance dashboard, customer life cycle and content calendar" width="1424" height="745">
+  </section>
+
+  <section class="section">
+    <div class="box stats">
+      <div class="stat"><strong>2025</strong><span>Year founded</span></div>
+      <div class="stat"><strong>20+</strong><span>Clients served</span></div>
+      <div class="stat"><strong>8</strong><span>Full-time team members</span></div>
+      <div class="stat"><strong>4.5/5</strong><span>Average client rating</span></div>
+    </div>
+  </section>
+
+  <section class="section ad" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot">
+      <!-- BEGIN AADS AD UNIT 2461435 -->
+      <div id="frame-1" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+        <iframe data-aa='2461435' src='//acceptable.a-ads.com/2461435/?size=Adaptive'
+                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+      <!-- END AADS AD UNIT 2461435 -->
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="head">
+      <h2>Our services</h2>
+      <p class="lede">Everything you need to grow online, from one team.</p>
+    </div>
+    <div class="services">
+      <article class="box service"><img class="icon" src="images/icon-paid-media.png" alt="" width="52" height="52" loading="lazy"><h3>Paid Media</h3><p>Search, social and display campaigns managed to hit your cost-per-lead and revenue targets.</p><a class="more" href="maintenance.html">Learn more &rarr;</a></article>
+      <article class="box service"><img class="icon" src="images/icon-seo.png" alt="" width="52" height="52" loading="lazy"><h3>SEO</h3><p>Keyword research, technical fixes and content that earn lasting organic traffic.</p><a class="more" href="maintenance.html">Learn more &rarr;</a></article>
+      <article class="box service"><img class="icon" src="images/icon-social-media.png" alt="" width="52" height="52" loading="lazy"><h3>Social Media</h3><p>Strategy, content and community management on the platforms your customers use.</p><a class="more" href="maintenance.html">Learn more &rarr;</a></article>
+      <article class="box service"><img class="icon" src="images/icon-web-design.png" alt="" width="52" height="52" loading="lazy"><h3>Web Design</h3><p>Fast, conversion-focused websites and landing pages built to grow with you.</p><a class="more" href="maintenance.html">Learn more &rarr;</a></article>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="head">
+      <h2>Case studies</h2>
+      <a class="btn ghost" href="maintenance.html">See more case studies</a>
+    </div>
+    <div class="work">
+      <article class="box case"><img class="pic" src="images/case-ecommerce.jpg" alt="Person holding a phone showing a clothing shop app in a store" width="960" height="600" loading="lazy"><div class="body"><span class="tag">E-commerce</span><h3>+114% return on ad spend in six months</h3><a class="more" href="maintenance.html">Read case study &rarr;</a></div></article>
+      <article class="box case"><img class="pic" src="images/case-education.jpg" alt="Woman in headphones taking notes next to a laptop" width="960" height="604" loading="lazy"><div class="body"><span class="tag">Education</span><h3>Doubled applications in one year</h3><a class="more" href="maintenance.html">Read case study &rarr;</a></div></article>
+      <article class="box case"><img class="pic" src="images/case-retail.jpg" alt="Shelves of rice, pasta, beans and lentils in a bulk food store" width="960" height="960" style="object-position: center 45%" loading="lazy"><div class="body"><span class="tag">Retail</span><h3>+97% first-time signups, year over year</h3><a class="more" href="maintenance.html">Read case study &rarr;</a></div></article>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="box about">
+      <div>
+        <h2>About the company</h2>
+        <p>We are an independent digital marketing agency founded in 2025. Our team of eight full-time strategists, analysts and creatives works with growing businesses to turn online attention into measurable revenue.</p>
+        <p>We started in 2025 with a small team and one simple promise: show clients exactly what their budget achieves. We are a young, fast-moving company, and that means more attention, quicker decisions and honest advice on every project.</p>
+        <a class="btn ghost" href="maintenance.html">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="head"><h2>Frequently asked questions</h2></div>
+    <div class="box faq">
+      <details><summary>What makes your company different?</summary><p>We are independent, so we can adapt quickly and recommend what is best for you, not what suits a parent company. Every plan is built on data and reviewed with you regularly.</p></details>
+      <details><summary>Who do you work with?</summary><p>We work with e-commerce brands, lead generation businesses and B2B companies, from early-stage startups to growing brands.</p></details>
+      <details><summary>What services do you offer?</summary><p>Paid media, SEO, social media, email, analytics, creative and web design. You can hire us for the full mix or for a single service.</p></details>
+      <details><summary>How does working with you work?</summary><p>After a discovery call we send a proposal, then set up tracking and launch. Expect regular check-ins, monthly performance reports and a quarterly review.</p></details>
+      <details><summary>How much do your services cost?</summary><p>Every project is different, so we quote based on your goals and scope. Request a proposal and we will send a clear estimate with no obligation.</p></details>
+      <details><summary>How can I get in touch?</summary><p>Fill in the proposal form or email us. A team member will reply within two business days to book a discovery call.</p></details>
+    </div>
+  </section>
+
+  <section class="section ad" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot">
+      <!-- BEGIN AADS AD UNIT 2461434 -->
+      <div id="frame-2" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+        <iframe data-aa='2461434' src='//acceptable.a-ads.com/2461434/?size=Adaptive'
+                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+      <!-- END AADS AD UNIT 2461434 -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta">
+      <div>
+        <h2>Ready to grow your business?</h2>
+        <p>Tell us about your goals and we will send a free, no-obligation proposal within two business days.</p>
+      </div>
+      <a class="btn" href="maintenance.html">Get a proposal</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <a class="brand" href="index.html"><img src="images/logo-white.png" alt="Parallax" width="922" height="124"></a>
+      <p>Performance-driven digital marketing for growing businesses.</p>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul><li><a href="maintenance.html">About</a></li><li><a href="careers.html">Careers</a></li><li><a href="maintenance.html">Contact</a></li></ul>
+    </div>
+    <div>
+      <h3>Resources</h3>
+      <ul><li><a href="index.html#services">Services</a></li><li><a href="maintenance.html">Case studies</a></li><li><a href="index.html#faq">FAQ</a></li></ul>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <ul><li><a href="maintenance.html">Privacy policy</a></li><li><a href="maintenance.html">Terms of use</a></li></ul>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Parallax. All rights reserved.</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

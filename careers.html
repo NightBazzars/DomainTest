@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Careers | Parallax</title>
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #dfe4ea;
+  --surface: #ffffff;
+  --ink: #1b2430;
+  --muted: #5d6877;
+  --line: #c2cad4;
+  --accent: #2f4bdb;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3e8ff;
+  --radius: 6px;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.55 var(--sans); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Header */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-header-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  max-width: 1160px; margin: 0 auto; padding: 18px 24px;
+}
+.brand { font: 600 20px var(--serif); text-decoration: none; }
+.brand img { display: block; height: 24px; width: auto; }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.nav a[aria-current="page"] { box-shadow: 0 2px 0 var(--accent); }
+
+/* Shared */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 28px 0; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+h1, h2, h3 { font-family: var(--serif); margin: 0; }
+h2 { font-weight: 600; font-size: 30px; line-height: 1.2; letter-spacing: -0.005em; }
+.lede { color: var(--muted); max-width: 56ch; margin: 0; }
+.btn {
+  display: inline-block; text-align: center; text-decoration: none; white-space: nowrap;
+  font: 600 16px var(--sans); border-radius: var(--radius); padding: 12px 22px;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer;
+}
+.btn:hover { filter: brightness(0.92); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: #fff; filter: none; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Intro */
+.intro { padding: 72px 0 32px; max-width: 760px; }
+.intro h1 { font-weight: 600; font-size: 56px; line-height: 1.05; letter-spacing: -0.015em; margin-bottom: 20px; }
+.intro .lede { font-size: 18px; margin-bottom: 32px; }
+
+.head { margin-bottom: 24px; }
+.head .lede { margin-top: 8px; }
+
+/* Perks */
+.split { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.split .head { margin-bottom: 0; }
+.perks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.perk::before { content: ""; display: block; width: 32px; height: 3px; background: var(--accent); margin-bottom: 16px; }
+.perk h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+.perk p { margin: 0; color: var(--muted); }
+
+/* Roles */
+.roles { padding: 12px 40px; }
+.role { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 20px 0; text-decoration: none; }
+.role + .role { border-top: 1px solid var(--line); }
+.role h3 { font-size: 20px; font-weight: 600; }
+.role p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+.role .go { font-weight: 600; color: var(--accent); white-space: nowrap; }
+.role:hover h3 { text-decoration: underline; }
+
+/* Hiring steps */
+.head + .steps { margin-top: 20px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
+.step { counter-increment: step; position: relative; display: flex; flex-direction: column; gap: 6px; }
+.step::before { content: counter(step); width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 600; display: grid; place-items: center; margin-bottom: 12px; }
+.step:not(:last-child)::after { content: ""; position: absolute; top: 19px; left: 52px; right: -12px; height: 2px; background: #aeb8c4; }
+.step strong { font-size: 18px; }
+.step span { color: var(--muted); max-width: 26ch; }
+
+/* CTA */
+.cta {
+  background: var(--accent); color: var(--accent-ink); border-radius: var(--radius);
+  padding: 56px 48px; display: flex; justify-content: space-between; align-items: center; gap: 32px;
+}
+.cta p { margin: 8px 0 0; opacity: .85; }
+.cta .btn { background: #fff; color: var(--accent); border-color: #fff; }
+
+/* Footer */
+.site-footer { background: var(--ink); color: #c4cdd9; margin-top: 56px; }
+.site-footer-inner {
+  max-width: 1160px; margin: 0 auto; padding: 56px 24px 32px;
+  display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 40px;
+}
+.site-footer .brand { color: #fff; display: inline-block; margin-bottom: 12px; }
+.site-footer p { margin: 0; font-size: 15px; max-width: 34ch; }
+.site-footer h3 { font: 600 15px var(--sans); color: #fff; margin: 0 0 14px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.site-footer li a { color: #c4cdd9; text-decoration: none; font-size: 15px; }
+.site-footer li a:hover { color: #fff; text-decoration: underline; }
+.site-footer :focus-visible { outline-color: #fff; }
+.footer-base {
+  grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px;
+  padding-top: 24px; border-top: 1px solid #3a4658; font-size: 14px;
+}
+.footer-base a { color: #c4cdd9; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .intro { padding-top: 40px; }
+  .intro h1 { font-size: 46px; }
+  .split { gap: 28px; }
+  .perks { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+  .step:not(:last-child)::after { display: none; }
+  .site-footer-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-footer-inner > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .brand img { height: 20px; }
+  .nav a:not(.keep) { display: none; }
+  .intro h1 { font-size: 38px; }
+  .perks, .steps { grid-template-columns: 1fr; }
+  .roles { padding-left: 20px; padding-right: 20px; }
+  .role .go { display: none; }
+  .site-footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 40px; }
+  .footer-base { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Ads (A-ADS) */
+.ad { text-align: center; }
+.ad-label { display: block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.ad-slot { width: 100%; min-height: 90px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.ad-slot iframe { max-width: 100%; border: 0; }
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt="Parallax" width="922" height="124"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="maintenance.html">Case studies</a>
+      <a href="maintenance.html">About</a>
+      <a class="keep" href="careers.html" aria-current="page">Careers</a>
+      <a class="keep" href="maintenance.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <h1>Join our team</h1>
+    <p class="lede">We are a young, growing agency of eight, and we are looking for people who care about doing great work. Take a look at our open roles below.</p>
+    <div class="actions">
+      <a class="btn" href="#roles">See open roles</a>
+    </div>
+  </section>
+
+  <section class="section ad" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot">
+      <!-- BEGIN AADS AD UNIT 2461435 -->
+      <div id="frame-1" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+        <iframe data-aa='2461435' src='//acceptable.a-ads.com/2461435/?size=Adaptive'
+                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+      <!-- END AADS AD UNIT 2461435 -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split">
+      <div class="head">
+        <h2>Why work with us</h2>
+        <p class="lede">A one-line intro about your culture.</p>
+      </div>
+      <div class="perks">
+      <article class="perk"><h3>Room to grow</h3><p>As a young company, there is plenty of space to take on new responsibility and shape how we work.</p></article>
+      <article class="perk"><h3>Flexible working</h3><p>We focus on results, not hours, with flexibility built into the way the team works.</p></article>
+      <article class="perk"><h3>A close team</h3><p>We are a team of eight, so everyone is heard and your work is seen.</p></article>
+      <article class="perk"><h3>Fair benefits</h3><p>Competitive pay, paid time off and support for learning and development.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="roles">
+    <div class="head">
+      <h2>Open roles</h2>
+      <p class="lede">Select a role to read the details and apply.</p>
+    </div>
+    <div class="box roles">
+      <a class="role" href="administrative-assistant.html"><div><h3>Administrative Assistant</h3><p>Operations &middot; Remote &middot; Full-time</p></div><span class="go">View role &rarr;</span></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="head">
+      <h2>How we hire</h2>
+    </div>
+    <ol class="steps">
+      <li class="step"><strong>Apply online</strong><span>Send your details and resume through the application form.</span></li>
+      <li class="step"><strong>Intro call</strong><span>A short, friendly conversation about you and the role.</span></li>
+      <li class="step"><strong>Meet the team</strong><span>An interview with the people you would work with.</span></li>
+      <li class="step"><strong>Offer</strong><span>We make a decision quickly and let every candidate know.</span></li>
+    </ol>
+  </section>
+
+  <section class="section ad" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <div class="ad-slot">
+      <!-- BEGIN AADS AD UNIT 2461434 -->
+      <div id="frame-2" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+        <iframe data-aa='2461434' src='//acceptable.a-ads.com/2461434/?size=Adaptive'
+                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+      <!-- END AADS AD UNIT 2461434 -->
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <a class="brand" href="index.html"><img src="images/logo-white.png" alt="Parallax" width="922" height="124"></a>
+      <p>Performance-driven digital marketing for growing businesses.</p>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <ul><li><a href="maintenance.html">About</a></li><li><a href="careers.html">Careers</a></li><li><a href="maintenance.html">Contact</a></li></ul>
+    </div>
+    <div>
+      <h3>Resources</h3>
+      <ul><li><a href="index.html#services">Services</a></li><li><a href="maintenance.html">Case studies</a></li><li><a href="index.html#faq">FAQ</a></li></ul>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <ul><li><a href="maintenance.html">Privacy policy</a></li><li><a href="maintenance.html">Terms of use</a></li></ul>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Parallax. All rights reserved.</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
